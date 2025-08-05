@@ -6,7 +6,7 @@ const Property = require("./propertyModel");
 dotenv.config();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const SavedProperty = require("./savedPropertiesModel");
+const SavedProperty = require("./savedProperty");
 
 const app = express();
 app.use(express.json());
