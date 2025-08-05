@@ -13,16 +13,29 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 1300;
 
+// Check if MONGO_URI is defined
+if (!process.env.MONGO_URI) {
+  console.error("❌ MONGO_URI environment variable is not defined!");
+  console.log("Available environment variables:", Object.keys(process.env).filter(key => key.includes('MONGO')));
+  process.exit(1);
+}
+
+console.log("🔍 Checking environment variables...");
+console.log("MONGO_URI exists:", !!process.env.MONGO_URI);
+console.log("ACCESS_TOKEN exists:", !!process.env.ACCESS_TOKEN);
+console.log("REFRESH_TOKEN exists:", !!process.env.REFRESH_TOKEN);
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("Connected to MongoDB");
+    console.log("✅ Connected to MongoDB");
     app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+      console.log(`🚀 Server is running on port ${PORT}`);
     });
   })
   .catch((error) => {
-    console.error("Error connecting to MongoDB", error);
+    console.error("❌ Error connecting to MongoDB", error);
+    process.exit(1);
   });
 
 // Middleware to authenticate and extract user from JWT
