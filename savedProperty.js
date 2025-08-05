@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 const savedPropertiesSchema = new mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "Auth", required: true },
     property: { type: mongoose.Schema.Types.ObjectId, ref: "Property", required: true },
     notes: { type: String, maxlength: 500 }, // Optional: user notes about the property
     savedAt: { type: Date, default: Date.now },

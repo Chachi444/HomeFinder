@@ -27,7 +27,8 @@ const propertySchema = new mongoose.Schema(
       default: "",
     },
     agentId: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Auth",
       required: true,
     },
   },
